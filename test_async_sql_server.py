@@ -4,7 +4,7 @@ from src.common.consts import CommonConsts
 
 
 dns = CommonConsts.DNS
-POOL = AsyncSQLServerConnectorPool(dns=dns, max_conn=10, min_conn=5)
+POOL = AsyncSQLServerConnectorPool(dns=dns, max_conn=1000, min_conn=5)
 async def main():
     await POOL.initialize()
     async with POOL.get() as session:
