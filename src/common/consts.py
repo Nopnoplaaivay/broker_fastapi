@@ -1,4 +1,6 @@
 import os
 
 class CommonConsts:
-    BACKEND_DNS = os.getenv('BACKEND_DNS')
+    DNS = os.getenv("DNS")
+    SYNC_DNS = os.getenv("SYNC_DNS")
+    ASYNC_DNS = os.getenv("ASYNC_DNS")
