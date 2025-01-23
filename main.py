@@ -3,7 +3,7 @@ from fastapi import FastAPI
 
 from src.api.routers import user_router, token_router, account_router, fake_data_router
 
-app = FastAPI()
+app = FastAPI(title="FastAPI with SQLAlchemy Async")
 
 app.include_router(user_router)
 app.include_router(fake_data_router)
