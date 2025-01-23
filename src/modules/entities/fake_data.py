@@ -10,5 +10,4 @@ class FakeData(Base):
     id = Column(Integer, primary_key=True, index=True)
     account = Column(String, ForeignKey('users.account'), nullable=False)
     data = Column(String, nullable=False)
-
     user = relationship('User', back_populates='fake_data')

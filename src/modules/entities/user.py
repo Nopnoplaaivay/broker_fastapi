@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String
+from sqlalchemy.orm import relationship
 
 from src.modules.base.entities import Base
 
@@ -11,3 +12,4 @@ class User(Base):
     type_broker = Column(String, nullable=True)  # Only for brokers
     type_client = Column(String, nullable=True)  # Only for clients under a broker
     password = Column(String, nullable=False)
+    fake_data = relationship('FakeData', back_populates='user')
