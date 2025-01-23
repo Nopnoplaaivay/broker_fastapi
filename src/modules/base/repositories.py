@@ -1,5 +1,6 @@
 from typing import List, TypeVar, Generic, Dict, Union, Callable
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
 
 from src.modules.base.entities import Base
 
@@ -36,10 +37,18 @@ class BaseRepo(Generic[T]):
     @classmethod
     async def get_all(cls) -> List[T]:
         async with cls.async_session_scope() as session:
-            query = session.query(cls.entity)
-            return await query.all()
+            query = select(cls.entity)
+            result = await session.execute(query)
+            return result.scalars().all()
 
     @classmethod
-    async def get_by_id(cls, id: Union[int, str]) -> T:
+    async def update(cls, data: Dict) -> T:
         async with cls.async_session_scope() as session:
-            return await session.query(cls.entity).filter(cls.entity.id == id).first()
+            entity = await session.get(cls.entity, data['id'])
+            for key, value in data.items():
+                setattr(entity, key, value)
+            query = select(cls.entity).filter(cls.entity.id == data['id'])
+            result = await session.execute(query)
+
+            await session.commit()
+            return result.scalars().first()

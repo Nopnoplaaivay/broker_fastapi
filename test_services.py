@@ -9,29 +9,38 @@ users_data = [
 ]
 
 fake_data = [
-    {"id": 1, "account": "mai_van_hiep", "data": "demo data user4"},
-    {"id": 2, "account": "mai_van_hiep", "data": "demo data user4"},
-    {"id": 3, "account": "mai_van_hiep", "data": "demo data user4"},
-    {"id": 4, "account": "mai_van_hiep", "data": "demo data user4"},
-    {"id": 5, "account": "trang_doan", "data": "demo data user5"},
-    {"id": 6, "account": "trang_doan", "data": "demo data user5"},
-    {"id": 7, "account": "trang_doan", "data": "demo data user5"},
-    {"id": 8, "account": "trang_doan", "data": "demo data user5"},
-    {"id": 9, "account": "cao_thai", "data": "demo data user6"},
-    {"id": 10, "account": "cao_thai", "data": "demo data user6"},
-    {"id": 11, "account": "cao_thai", "data": "demo data user6"},
-    {"id": 12, "account": "cao_thai", "data": "demo data user6"},
-    {"id": 13, "account": "duong_huyen_trang", "data": "demo data user7"},
-    {"id": 14, "account": "duong_huyen_trang", "data": "demo data user7"},
-    {"id": 15, "account": "duong_huyen_trang", "data": "demo data user7"},
-    {"id": 16, "account": "duong_huyen_trang", "data": "demo data user7"},
+    {"id": 1, "account": "mai_van_hiep", "data": "demo data mai_van_hiep"},
+    {"id": 2, "account": "mai_van_hiep", "data": "demo data mai_van_hiep"},
+    {"id": 3, "account": "mai_van_hiep", "data": "demo data mai_van_hiep"},
+    {"id": 4, "account": "mai_van_hiep", "data": "demo data mai_van_hiep"},
+    {"id": 5, "account": "trang_doan", "data": "demo data trang_doan"},
+    {"id": 6, "account": "trang_doan", "data": "demo data trang_doan"},
+    {"id": 7, "account": "trang_doan", "data": "demo data trang_doan"},
+    {"id": 8, "account": "trang_doan", "data": "demo data trang_doan"},
+    {"id": 9, "account": "cao_thai", "data": "demo data cao_thai"},
+    {"id": 10, "account": "cao_thai", "data": "demo data cao_thai"},
+    {"id": 11, "account": "cao_thai", "data": "demo data cao_thai"},
+    {"id": 12, "account": "cao_thai", "data": "demo data cao_thai"},
+    {"id": 13, "account": "duong_huyen_trang", "data": "demo data duong_huyen_trang"},
+    {"id": 14, "account": "duong_huyen_trang", "data": "demo data duong_huyen_trang"},
+    {"id": 15, "account": "duong_huyen_trang", "data": "demo data duong_huyen_trang"},
+    {"id": 16, "account": "duong_huyen_trang", "data": "demo data duong_huyen_trang"},
 ]
 
 from src.modules.services import UserService, FakeDataService
 
 async def create_users():
-    await UserService.repo.insert_many(users_data)
-    await FakeDataService.repo.insert_many(fake_data)
+    # await UserService.repo.insert_many(users_data)
+    # await FakeDataService.repo.insert_many(fake_data)
+
+    # update user
+    user = await UserService.update_password({
+        "account": "ltduong",
+        "old_password": "iuvkhang",
+        "new_password": "iuvkhangsiunhiu"
+    })
+    print("Successfully updated")
+    print(user.__dict__)
 
 if __name__ == "__main__":
     import asyncio
