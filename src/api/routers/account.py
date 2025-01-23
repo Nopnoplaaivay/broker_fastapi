@@ -21,10 +21,8 @@ async def update_password(account_data: AccountUpdatePassword, request_user: dic
     if not target_user:
         raise HTTPException(status_code=404, detail="Account not exists or password is incorrect")
     target_user = target_user.__dict__
-    print(target_user)
-    print(request_user)
 
-    if not Permissions.verify(action="update_password", request_user=request_user, target_user=target_user):
+    if not Permissions.password(request_user=request_user, target_user=target_user):
         raise HTTPException(status_code=403, detail="Permission denied")
     
     # Update password logic
@@ -32,6 +30,6 @@ async def update_password(account_data: AccountUpdatePassword, request_user: dic
     if not user:
         raise HTTPException(status_code=404, detail="Account not exists or password is incorrect")
 
-    LOGGER.info(f"Successfully updated: {user.__dict__}")
-    LOGGER.info(f"Request User: {request_user}")
+    # LOGGER.info(f"Successfully updated: {user.__dict__}")
+    # LOGGER.info(f"Request User: {request_user}")
     return account_data

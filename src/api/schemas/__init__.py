@@ -1,3 +1,4 @@
-from .user import UserBase
+from .user import User
+from .fake_data import FakeData
 from .token import Token
-from .account import AccountBase, AccountLogin, AccountCreate, AccountUpdatePassword
+from .account import AccountLogin, AccountCreate, AccountUpdatePassword

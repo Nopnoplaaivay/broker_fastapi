@@ -2,7 +2,7 @@ from typing import Optional
 from pydantic import BaseModel, ConfigDict
 
 
-class UserBase(BaseModel):
+class User(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
     account: str
