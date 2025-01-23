@@ -45,27 +45,6 @@ async def backend_session_scope(new: bool = False) -> AsyncContextManager[AsyncS
     Provide an async transactional scope around a series of operations.
     Shouldn't keep session alive too long, it will block a connection of pool connections.
     """
-    # if not new:
-    #     reuse_session = get_session()
-    #     if reuse_session is None:
-    #         session = POOL.get()
-    #         await set_session(session=session)
-    #     else:
-    #         session = reuse_session
-    #     try:
-    #         yield session
-    #         if reuse_session is None:
-    #             await session.commit()
-    #     except Exception as exception:
-    #         LOGGER.error(exception, exc_info=True)
-    #         if reuse_session is None:
-    #             await session.rollback()
-    #         raise exception
-    #     finally:
-    #         if reuse_session is None:
-    #             await POOL.put(session)
-    #             await set_session(session=None)
-    # else:
     session = POOL.get()
     try:
         yield session

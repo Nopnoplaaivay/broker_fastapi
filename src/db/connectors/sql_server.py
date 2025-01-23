@@ -46,3 +46,7 @@ class AsyncSQLServerConnectorPool:
                 LOGGER.info("Successfully created async connection...")
         except Exception as e:
             raise Exception(f"Could not create connection to {self.dns}", e)
+        
+    async def close(self):
+        """Close the connection pool"""
+        await self.engine.dispose()

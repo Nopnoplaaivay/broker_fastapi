@@ -28,6 +28,7 @@ fake_data = [
 ]
 
 from src.modules.services import UserService, FakeDataService
+from src.db.sessions.backend import POOL
 
 async def create_users():
     # await UserService.repo.insert_many(users_data)
@@ -35,9 +36,9 @@ async def create_users():
 
     # update user
     user = await UserService.update_password({
-        "account": "ltduong",
-        "old_password": "iuvkhang",
-        "new_password": "iuvkhangsiunhiu"
+        "account": "vu_khanh",
+        "old_password": "asd123456",
+        "new_password": "asd12345678"
     })
     print("Successfully updated")
     print(user.__dict__)
@@ -46,3 +47,5 @@ if __name__ == "__main__":
     import asyncio
     loop = asyncio.get_event_loop()
     loop.run_until_complete(create_users())
+
+    # POOL.close()
