@@ -13,7 +13,7 @@ from src.utils.logger import LOGGER
 SESSIONS = {}
 DNS = CommonConsts.ASYNC_DNS
 MIN_CONN = 2
-MAX_CONN = 1000
+MAX_CONN = 10000
 
 POOL = AsyncSQLServerConnectorPool(dns=DNS, max_conn=MAX_CONN, min_conn=MIN_CONN)
 
