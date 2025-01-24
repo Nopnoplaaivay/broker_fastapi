@@ -1,8 +1,3 @@
-import sys
-import os
-
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
-
 import asyncio
 from sqlalchemy import text
 from src.db.sessions import backend_session_scope
