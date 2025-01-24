@@ -1,3 +1,8 @@
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
+
 users_data = [
     {"id": 1, "account": "vu_khanh", "type_user": "admin", "password": "asd123456"},
     {"id": 2, "account": "vinh_khang", "type_user": "broker", "type_broker": "broker_2", "password": "asd123456"},
@@ -32,7 +37,6 @@ fake_data = [
 ]
 
 from src.modules.services import UserService, FakeDataService
-from src.db.sessions.backend import POOL
 
 async def create_users():
     # await UserService.repo.insert_many(users_data)
@@ -51,5 +55,3 @@ if __name__ == "__main__":
     import asyncio
     loop = asyncio.get_event_loop()
     loop.run_until_complete(create_users())
-
-    # POOL.close()

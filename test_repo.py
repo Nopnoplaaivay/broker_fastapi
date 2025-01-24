@@ -1,3 +1,8 @@
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
+
 from src.modules.repositories import UserRepo
 from src.utils.logger import LOGGER
 

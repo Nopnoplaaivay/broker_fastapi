@@ -15,29 +15,7 @@ DNS = CommonConsts.ASYNC_DNS
 MIN_CONN = 2
 MAX_CONN = 1000
 
-# Use ContextVar for async context
-# CONTEXTVAR: ContextVar[uuid.UUID] = ContextVar('session_id', default=None)
-
 POOL = AsyncSQLServerConnectorPool(dns=DNS, max_conn=MAX_CONN, min_conn=MIN_CONN)
-
-# async def set_session(session: AsyncSession | None) -> None:
-#     """Set the session for the current context"""
-#     global SESSIONS
-#     context_id = CONTEXTVAR.get()
-#     if session is None:
-#         if context_id in SESSIONS:
-#             del SESSIONS[context_id]
-#         return
-#     if context_id is None:
-#         context_id = uuid.uuid4()
-#     CONTEXTVAR.set(context_id)
-#     SESSIONS[context_id] = session
-
-# def get_session() -> AsyncSession | None:
-#     """Get the session for the current context"""
-#     global SESSIONS
-#     context_id = CONTEXTVAR.get()
-#     return SESSIONS.get(context_id, None)
 
 @asynccontextmanager
 async def backend_session_scope(new: bool = False) -> AsyncContextManager[AsyncSession]:

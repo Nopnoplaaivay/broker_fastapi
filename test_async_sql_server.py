@@ -1,3 +1,13 @@
+import sys
+import os
+
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+src_dir = os.path.abspath(os.path.join(current_dir, '..', 'src'))
+sys.path.append(src_dir)
+
+print(sys.path)  # Print the sys.path for debugging
+
 import asyncio
 from src.db.connectors import AsyncSQLServerConnectorPool
 from src.common.consts import CommonConsts
