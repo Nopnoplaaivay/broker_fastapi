@@ -1,5 +1,6 @@
 import os
 import uuid
+import asyncio
 from contextlib import asynccontextmanager
 from typing import AsyncContextManager
 from contextvars import ContextVar
@@ -17,13 +18,17 @@ MAX_CONN = 10000
 
 POOL = AsyncSQLServerConnectorPool(dns=DNS, max_conn=MAX_CONN, min_conn=MIN_CONN)
 
+print(f"Is async POOL get: {asyncio.iscoroutinefunction(POOL.get)}")  # Should return True
+print(f"Is async POOL put: {asyncio.iscoroutinefunction(POOL.put)}")  # Should return True
+
+
 @asynccontextmanager
 async def backend_session_scope(new: bool = False) -> AsyncContextManager[AsyncSession]:
     """
     Provide an async transactional scope around a series of operations.
     Shouldn't keep session alive too long, it will block a connection of pool connections.
     """
-    session = POOL.get()
+    session = await POOL.get()
     try:
         yield session
         await session.commit()

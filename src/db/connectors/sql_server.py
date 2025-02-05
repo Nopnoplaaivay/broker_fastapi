@@ -30,7 +30,7 @@ class AsyncSQLServerConnectorPool:
         conn = await aioodbc.connect(dsn=self.dns)
         return conn
 
-    def get(self) -> AsyncSession:
+    async def get(self) -> AsyncSession:
         """Get an async session from the pool"""
         return self.async_session()
 

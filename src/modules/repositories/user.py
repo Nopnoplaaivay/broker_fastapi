@@ -10,10 +10,12 @@ class UserRepo(BaseRepo[User]):
     async_session_scope = backend_session_scope
 
     @classmethod
-    async def find_by_account(cls, account: str, delay=5, id=1) -> User:
+    async def find_by_account(cls, account: str, delay=0, id=1) -> User:
         async with cls.async_session_scope() as session:
             print(f"Request {id} - Start")
             result = await session.execute(select(cls.entity).filter(cls.entity.account == account))
+            delay = 0
             await asyncio.sleep(delay)
+            print(f"Result {id}: {result}")
             print(f"Request {id} - End")
             return result.scalars().first()
