@@ -21,7 +21,7 @@ async def main(num_requests: int = 100):
         initial_response = await send_request(client, 0)
         print(f"Initial Request - Status: {initial_response}")
 
-        time.sleep(3)
+        time.sleep(2)
         # bắt đầu test nhiều request
         tasks = [send_request(client, i) for i in range(num_requests)]
 
