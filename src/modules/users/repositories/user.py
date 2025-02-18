@@ -16,6 +16,5 @@ class UserRepo(BaseRepo[User]):
             result = await session.execute(select(cls.entity).filter(cls.entity.account == account))
             delay = 0
             await asyncio.sleep(delay)
-            print(f"Result {id}: {result}")
             print(f"Request {id} - End")
             return result.scalars().first()

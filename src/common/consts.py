@@ -1,6 +1,16 @@
 import os
 
 class CommonConsts:
-    DNS = os.getenv("DNS")
-    SYNC_DNS = os.getenv("SYNC_DNS")
     ASYNC_DNS = os.getenv("ASYNC_DNS")
+
+class MessageConsts:
+    CREATED = "Created"
+    SUCCESS = "Success"
+    VALIDATION_FAILED = "Validation failed"
+    UNAUTHORIZED = "Unauthorized"
+    BAD_REQUEST = "Bad request"
+    FORBIDDEN = "Forbidden"
+    NOT_FOUND = "Not found"
+    CONFLICT = "Conflict"
+    INVALID_OBJECT_ID = "Invalid object id"
+    INTERNAL_SERVER_ERROR = "Unknown internal server error"

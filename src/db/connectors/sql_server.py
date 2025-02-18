@@ -50,3 +50,4 @@ class AsyncSQLServerConnectorPool:
     async def close(self):
         """Close the connection pool"""
         await self.engine.dispose()
+        LOGGER.info("Connection pool closed")
